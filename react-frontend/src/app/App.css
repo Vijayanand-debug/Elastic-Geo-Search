@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #1E40AF;
+    --color-primary-dark: #1E3A8A;
+    --color-secondary: #0000;
+}
+
+body {
+    /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    /* background: linear-gradient(to top, #ada996, #f2f2f2, #dbdbdb, #eaeaea); */
+    /* background-repeat: no-repeat; */
+    background-color: #6d6a6a;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0px auto;
+}

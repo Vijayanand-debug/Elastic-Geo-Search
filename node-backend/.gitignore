@@ -1,0 +1,33 @@
+# Node dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Build output
+dist/
+build/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+
+# Environment variables
+# .env
+# .env.local
+# .env.*.local
+
+# Docker artifacts
+.docker
+docker-compose.override.yml
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+./elastic-search-cygnosis.pem

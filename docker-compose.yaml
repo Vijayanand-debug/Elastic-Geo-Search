@@ -1,0 +1,71 @@
+services :
+  geo-app:
+    build:
+      context: ./Elastic-Geo-Search-Frontend
+      dockerfile: Dockerfile
+      target: development
+    container_name: geo-app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Elastic-Geo-Search-Frontend:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - nodeapp
+    networks:
+      - app-network
+
+  nodeapp:
+    build: 
+      context: ./node-backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: nodeapp
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./node-backend/.env
+    volumes:
+      - ./node-backend:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - elasticsearch
+    restart: unless-stopped
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g 
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200" 
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
+  
+volumes:
+  es_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
+

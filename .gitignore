@@ -1,0 +1,16 @@
+node-backend/node_modules/
+react-frontend/node_modules/
+npm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Environmental variables
+.env
+.env.local
+
+# build output
+dist/
+build/
+
+# IDE/ editor configs
+.vscode
