@@ -5,7 +5,7 @@ WORKDIR /app
 # dev stage
 FROM base AS builder
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 RUN npm run build
 RUN npm prune --production
