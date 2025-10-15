@@ -9,7 +9,7 @@ export default function SearchComponent({ onSearchChange }: { onSearchChange: Re
     }
 
 
-    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocus = () => {
         setShowAlert(true);
 
         setTimeout(() => {
