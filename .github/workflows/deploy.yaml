@@ -48,7 +48,7 @@ jobs:
       - name: Deploy backend to EKS
         env:
           IMAGE_TAG: ${{ github.sha }}
-          KUBE_NAMESPACE: node-app
+          KUBE_NAMESPACE: geo-app
         run: |
           aws eks update-kubeconfig --name geo-cluster --region ap-south-1
           sed "s|{{IMAGE_TAG}}|${IMAGE_TAG}|g" ./k8s/backend.yaml | kubectl apply -n $KUBE_NAMESPACE -f -
