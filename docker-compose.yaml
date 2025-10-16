@@ -1,14 +1,14 @@
 services :
   geo-app:
     build:
-      context: ./Elastic-Geo-Search-Frontend
+      context: ./react-frontend
       dockerfile: Dockerfile
       target: development
     container_name: geo-app
     ports:
       - "5173:5173"
     volumes:
-      - ./Elastic-Geo-Search-Frontend:/app
+      - ./react-frontend:/app
       - /app/node_modules
     command: npm run dev
     depends_on:

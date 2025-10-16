@@ -37,7 +37,8 @@ export default function HomeLayout() {
         setError(null);
 
         try {
-            const response: AxiosResponse<ProductsAPIResponse> = await axios.get('http://localhost:3000/api/search', {
+            const API_URL = `${import.meta.env.VITE_API_BASE_URL}/search`;
+            const response: AxiosResponse<ProductsAPIResponse> = await axios.get(API_URL, {
                 params: {
                     lat: userLocation.lat,
                     lng: userLocation.lng,
