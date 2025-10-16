@@ -11,7 +11,7 @@ EXPOSE 3000
 
 # builder stage
 FROM base AS builder
-RUN npm ci
+RUN npm i
 COPY src ./src
 RUN npm run build
 
