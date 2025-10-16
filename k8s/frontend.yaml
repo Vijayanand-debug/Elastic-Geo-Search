@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geo-app-deployment
+  namespace: geo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: geo-app
+  template:
+    metadata:
+      labels:
+        app: geo-app
+    spec:
+      containers:
+      - name: geo-app
+        image: 920411896353.dkr.ecr.ap-south-1.amazonaws.com/geo-app:{{IMAGE_TAG}}
+        ports:
+        - containerPort: 80 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: geo-app-service
+  namespace: geo-app
+spec:
+  selector:
+    app: geo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

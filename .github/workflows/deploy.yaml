@@ -43,3 +43,19 @@ jobs:
         run: |
             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./react-frontend/Dockerfile ./react-frontend --target production
             docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+
+      - name: Deploy backend to EKS
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          KUBE_NAMESPACE: geo-app
+        run: |
+          sed "s|{{IMAGE_TAG}}|${IMAGE_TAG}|g" ./k8s/backend.yaml | kubectl apply -n $KUBE_NAMESPACE -f -
+
+
+      - name: Deploy frontend to EKS
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          KUBE_NAMESPACE: geo-app
+        run: |
+          sed "s|{{IMAGE_TAG}}|${IMAGE_TAG}|g" ./k8s/frontend.yaml | kubectl apply -n $KUBE_NAMESPACE -f -

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  namespace: geo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - name: node-app
+        image: 920411896353.dkr.ecr.ap-south-1.amazonaws.com/node-app:{{IMAGE_TAG}}
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: nodeapp-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+  namespace: geo-app
+spec:
+  selector:
+    app: node-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
