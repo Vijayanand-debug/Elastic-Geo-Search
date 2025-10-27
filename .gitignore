@@ -7,6 +7,7 @@ pnpm-lock.yaml
 # Environmental variables
 .env
 .env.local
+.env.production
 
 # build output
 dist/
