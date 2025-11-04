@@ -1,4 +1,4 @@
-This is a full stack app, built for a deeper understanding about geospatial search with Elasticsearch.
+This is a full stack app that I've developed for my deeper understanding about geospatial search with Elasticsearch.
 
 ![Architecture Diagram](./architecture.png)
 
