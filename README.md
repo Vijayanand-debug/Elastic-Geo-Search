@@ -2,7 +2,7 @@ This is a full stack app, built for a deeper understanding about geospatial sear
 
 ![Architecture Diagram](./architecture.png)
 
-Pick any spot in Ireland, and it instantly shows you a list of products nearby. From there, you can search, filter and sort products in real time. The app deals with a dataset of 100,000 products. 
+Pick any location in Ireland, and it instantly shows a list of products nearby. Products can be searched, filtered and sorted in real time. The app uses a dataset of 100,000 mock products generated using `Dataset_ElasticSearch.ipynb` included in the root directory. The generated data file `products_bulk.ndjson` is also included in the repository.
 
 ![App Demo](./demogif.gif)
 
@@ -36,3 +36,7 @@ Step 3 - Set Up the Datbase and Generate the Product Data
 
 Step 4 - Start Docker Containers
 - docker-compose up -d --build
+
+### Data Source Credits
+The project's geospatial data for Irish cities was taken from https://simplemaps.com/data/ie-cities
+
